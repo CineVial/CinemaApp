@@ -3,7 +3,6 @@ package cinedroid.cinedroid.realisateurs.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,19 +80,6 @@ public class ListRealisateurFragment extends Fragment {
         }, null);
         queue.add(jsonArrayRequest);
 
-        this.listView.setOnItemClickListener((parent, view, position, id) -> {
-            RealisateurFragment realisateurFragment = new RealisateurFragment();
-
-            Bundle bundle = new Bundle();
-            Realisateur realisateur = realisateurList.get(position);
-            bundle.putSerializable("realisateur", realisateur);
-            realisateurFragment.setArguments(bundle);
-
-            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.realisateurFragment, realisateurFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
-        });
     }
 
 }

@@ -1,4 +1,4 @@
-package cinedroid.cinedroid.realisateurs;
+package cinedroid.cinedroid.acteurs;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,11 +10,11 @@ import android.widget.TextView;
 import java.util.List;
 
 import cinedroid.cinedroid.R;
-import cinedroid.cinedroid.objects.Realisateur;
+import cinedroid.cinedroid.objects.Acteur;
 
-public class RealisateurAdapter extends ArrayAdapter<Realisateur> {
+public class ActeurAdapter extends ArrayAdapter<Acteur> {
 
-    public RealisateurAdapter(Context context, List<Realisateur> resource) {
+    public ActeurAdapter(Context context, List<Acteur> resource) {
         super(context, 0, resource);
     }
 
@@ -22,7 +22,7 @@ public class RealisateurAdapter extends ArrayAdapter<Realisateur> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if(convertView == null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.elmt_list_realisateur,parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.elmt_list_acteur,parent, false);
         }
 
         ViewHolder viewHolder = (ViewHolder) convertView.getTag();
@@ -30,16 +30,16 @@ public class RealisateurAdapter extends ArrayAdapter<Realisateur> {
         if(viewHolder == null){
             viewHolder = new ViewHolder();
 
-            viewHolder.textView_prenom = convertView.findViewById(R.id.realisateurFirstName);
-            viewHolder.textView_nom = convertView.findViewById(R.id.realisateurName);
+            viewHolder.textView_prenom = convertView.findViewById(R.id.acteurFirstName);
+            viewHolder.textView_nom = convertView.findViewById(R.id.acteurName);
 
             convertView.setTag(viewHolder);
         }
 
-        Realisateur realisateur = getItem(position);
+        Acteur acteur = getItem(position);
 
-        viewHolder.textView_prenom.setText(realisateur.getPrenRea());
-        viewHolder.textView_nom.setText(realisateur.getNomRea());
+        viewHolder.textView_prenom.setText(acteur.getPrenAct());
+        viewHolder.textView_nom.setText(acteur.getNomAct());
 
         return convertView;
     }

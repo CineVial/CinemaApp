@@ -17,11 +17,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
 
 import cinedroid.cinedroid.R;
+import cinedroid.cinedroid.objects.Categorie;
 import cinedroid.cinedroid.objects.Film;
 import cinedroid.cinedroid.objects.Realisateur;
 
 public class FilmFragment extends Fragment {
     private Realisateur realisateur;
+    private Categorie categorie;
     private Film film;
 
     @Override
@@ -50,8 +52,8 @@ public class FilmFragment extends Fragment {
         ((TextView) getActivity().findViewById(R.id.filmDateDetails)).setText(film.getDateSortie());
         ((TextView) getActivity().findViewById(R.id.filmBudgetDetails)).setText(film.getBudget().toString());
         ((TextView) getActivity().findViewById(R.id.filmRecetteDetails)).setText(film.getMontantRecette().toString());
-        ((TextView) getActivity().findViewById(R.id.filmRealisateurDetails)).setText(realisateur.getPrenRea() + realisateur.getNomRea());
-        ((TextView) getActivity().findViewById(R.id.filmCategorieDetails)).setText(film.getCodeCat());
+        ((TextView) getActivity().findViewById(R.id.filmRealisateurDetails)).setText(realisateur.getPrenRea() +" "+ realisateur.getNomRea());
+        ((TextView) getActivity().findViewById(R.id.filmCategorieDetails)).setText(categorie.getLibelleCat());
     }
 
     private void getRealisateur(Film film) {
@@ -63,6 +65,29 @@ public class FilmFragment extends Fragment {
             JsonObjectRequest request = new JsonObjectRequest(api_url, new JSONObject(), response -> {
                 try {
                     this.realisateur = new ObjectMapper().readValue(response.toString(), Realisateur.class);
+                    this.getCategorie(film);
+                }
+                catch(Exception e) {
+                    e.printStackTrace();
+                }
+            }, null);
+            queue.add(request);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void getCategorie(Film film) {
+        try {
+            String api_url = "http://api.cinema-epul.tk/categorie?c_id=" + film.getCodeCat();
+            Context context = getActivity().getApplicationContext();
+            RequestQueue queue = Volley.newRequestQueue(context);
+
+            JsonObjectRequest request = new JsonObjectRequest(api_url, new JSONObject(), response -> {
+                try {
+                    this.categorie = new ObjectMapper().readValue(response.toString(), Categorie.class);
                     this.film();
                 }
                 catch(Exception e) {
