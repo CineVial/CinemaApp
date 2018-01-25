@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
 import cinedroid.cinedroid.films.FilmActivity;
+import cinedroid.cinedroid.realisateurs.RealisateurActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -15,8 +16,10 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         final Button button_film = findViewById(R.id.film_app);
-
         button_film.setOnClickListener(view -> startActivity(new Intent(HomeActivity.this, FilmActivity.class)));
+
+        final Button button_realisateur = findViewById(R.id.realisateur_app);
+        button_realisateur.setOnClickListener(view -> startActivity(new Intent(HomeActivity.this, RealisateurActivity.class)));
     }
 
 

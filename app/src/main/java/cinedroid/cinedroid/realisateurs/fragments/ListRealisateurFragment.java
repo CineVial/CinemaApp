@@ -1,4 +1,4 @@
-package cinedroid.cinedroid.films.fragments;
+package cinedroid.cinedroid.realisateurs.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -20,18 +20,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cinedroid.cinedroid.R;
-import cinedroid.cinedroid.films.FilmAdapter;
-import cinedroid.cinedroid.objects.Film;
+import cinedroid.cinedroid.objects.Realisateur;
+import cinedroid.cinedroid.realisateurs.RealisateurAdapter;
 
-public class ListFilmFragment extends Fragment {
+public class ListRealisateurFragment extends Fragment {
 
     private ListView listView;
-    private List<Film> filmList;
-    private FilmAdapter filmAdapter;
+    private List<Realisateur> realisateurList;
+    private RealisateurAdapter realisateurAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.list_film_fragment, container, false);
+        return inflater.inflate(R.layout.list_realisateur_fragment, container, false);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class ListFilmFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         init();
-        listFilm();
+        listRealisateur();
     }
 
     @Override
@@ -47,18 +47,18 @@ public class ListFilmFragment extends Fragment {
         super.onResume();
 
         init();
-        listFilm();
+        listRealisateur();
     }
 
     private void init() {
-        this.filmList = new ArrayList<>();
-        this.listView = getActivity().findViewById(R.id.filmList);
+        this.realisateurList = new ArrayList<>();
+        this.listView = getActivity().findViewById(R.id.realisateurList);
 
     }
 
-    private void listFilm() {
-        final String api_url = "http://api.cinema-epul.tk/films";
-        final Film default_film = new Film();
+    private void listRealisateur() {
+        final String api_url = "http://api.cinema-epul.tk/realisateurs";
+        final Realisateur default_realisateur = new Realisateur();
         final Context context = getActivity().getApplicationContext();
         RequestQueue queue = Volley.newRequestQueue(context);
 
@@ -66,31 +66,31 @@ public class ListFilmFragment extends Fragment {
             try {
                 for(int i=0; i < response.length(); i++) {
                     JSONObject jsonObject = response.getJSONObject(i);
-                    Film film = new Film(jsonObject);
-                    filmList.add(film);
+                    Realisateur realisateur = new Realisateur(jsonObject);
+                    realisateurList.add(realisateur);
                 }
             }
             catch(JSONException e) {
                 e.printStackTrace();
-                filmList.add(default_film);
+                realisateurList.add(default_realisateur);
             }
 
-            filmAdapter = new FilmAdapter(context, filmList);
-            listView.setAdapter(filmAdapter);
+            realisateurAdapter = new RealisateurAdapter(context, realisateurList);
+            listView.setAdapter(realisateurAdapter);
 
         }, null);
         queue.add(jsonArrayRequest);
 
         this.listView.setOnItemClickListener((parent, view, position, id) -> {
-            FilmFragment filmFragment = new FilmFragment();
+            RealisateurFragment realisateurFragment = new RealisateurFragment();
 
             Bundle bundle = new Bundle();
-            Film film = filmList.get(position);
-            bundle.putSerializable("film", film);
-            filmFragment.setArguments(bundle);
+            Realisateur realisateur = realisateurList.get(position);
+            bundle.putSerializable("realisateur", realisateur);
+            realisateurFragment.setArguments(bundle);
 
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.filmFragment, filmFragment);
+            transaction.replace(R.id.realisateurFragment, realisateurFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         });

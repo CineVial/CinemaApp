@@ -13,6 +13,9 @@
         <activity android:name="cinedroid.cinedroid.films.FilmActivity">
 
         </activity>
+        <activity android:name="cinedroid.cinedroid.realisateurs.RealisateurActivity">
+
+        </activity>
         <activity android:name="cinedroid.cinedroid.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

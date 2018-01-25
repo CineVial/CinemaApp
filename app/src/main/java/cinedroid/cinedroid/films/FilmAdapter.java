@@ -22,7 +22,7 @@ public class FilmAdapter extends ArrayAdapter<Film> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if(convertView == null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.elmt_list,parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.elmt_list_film,parent, false);
         }
 
         ViewHolder viewHolder = (ViewHolder) convertView.getTag();

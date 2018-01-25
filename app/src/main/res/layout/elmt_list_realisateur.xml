@@ -7,21 +7,22 @@
     android:padding="10dp" >
 
     <TextView
-        android:id="@+id/filmName"
+        android:id="@+id/realisateurName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:layout_marginLeft="10dp"
         android:textStyle="bold"
-        tools:text="filmName" />
+        tools:text="realisateurName" />
 
     <TextView
-        android:id="@+id/filmDate"
+        android:id="@+id/realisateurFirstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:layout_marginLeft="10dp"
-        tools:text="Date of the film"
-        android:layout_toEndOf="@+id/filmName" />
+        android:textStyle="bold"
+        tools:text="realisateurFirstName"
+        android:layout_toEndOf="@id/realisateurName" />
 
 </RelativeLayout>
