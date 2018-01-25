@@ -37,9 +37,6 @@ public class ListFilmFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        init();
-        listFilm();
     }
 
     @Override

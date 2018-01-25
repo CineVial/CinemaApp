@@ -36,9 +36,6 @@ public class ListRealisateurFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        init();
-        listRealisateur();
     }
 
     @Override
